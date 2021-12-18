@@ -5,6 +5,7 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace Business.Concrete
@@ -51,6 +52,12 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.DailyPrice >= min && p.DailyPrice <= max));
         }
+
+        public IDataResult<List<Car>> GetAllWithLinq(Expression<Func<Car, bool>> filter = null)
+        {
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(filter));
+        }
+
         public IDataResult<Car> GetById(int id)
         {
             Car car = _carDal.Get(p => p.Id == id);

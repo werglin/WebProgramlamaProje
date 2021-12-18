@@ -19,6 +19,10 @@ namespace Business.Concrete
 
         public IResult Add(User entity)
         {
+            if (GetByMail(entity.Email).Success == false)
+            {
+                return new ErrorResult(Messages.MailAlreadyInUser);
+            }
             _userDal.Add(entity);
             return new SuccessResult(Messages.SuccessfullyAdded);
         }

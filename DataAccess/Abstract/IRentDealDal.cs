@@ -6,7 +6,9 @@ using System.Text;
 
 namespace DataAccess.Abstract
 {
-    public interface IRentDealDal: IEntityRepository<RentDeal>
+    public interface IRentDealDal : IEntityRepository<RentDeal>
     {
+        public List<Car> GetUnorderedCarsFRList(List<Car> cars, DateTime dateTime);
+        public List<Car> GetUnorderedCars(DateTime dateTime);
     }
 }
