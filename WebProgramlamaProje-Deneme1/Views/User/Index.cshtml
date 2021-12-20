@@ -166,7 +166,7 @@
             {
                 <div class="col-md-3 border">
                     <figure>
-                        <img src="img/OpelInsignia.png" class="d-block w-100 h-100">
+                        <img src="/img/@item.PhotoName" class="d-block w-100 h-100">
                     </figure>
                 </div>
                 <div class="col-md-9 border">
@@ -175,10 +175,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-9 border" style="font-size: 18px"><p><b>@item.Summary</b></p></div>
-                        <div class="col-md-3 border">
-                            <a asp-action="Haberler">
-                                <button id="yonlendirButton" class="btn w-100 h-100">Devamını Oku...</button>
-                            </a>
+                        <div class="col-md-3 border"> 
+                            <a asp-action="Haber" asp-route-id="@item.Id" class="btn w-100 h-100">Devamını Oku...</a>
                         </div>
                     </div>
 

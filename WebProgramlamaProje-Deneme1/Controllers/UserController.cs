@@ -84,6 +84,15 @@ namespace WebProgramlamaProje_Deneme1.Controllers
             return View();
         }
 
+        public ActionResult Haber(int id)
+        {
+            if (newService.GetById(id).Success)
+            {
+                return View(newService.GetById(id).Data);
+            }
+            return RedirectToAction("Index");
+        }
+
         public ActionResult CarList()
         {
             return View();

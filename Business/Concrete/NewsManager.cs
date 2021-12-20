@@ -34,7 +34,12 @@ namespace Business.Concrete
 
         public IDataResult<News> GetById(int id)
         {
-            return new SuccessDataResult<News>(_newsDal.Get(x => x.Id == id));
+            News news = _newsDal.Get(x => x.Id == id);
+            if (news == null)
+            {
+                return new ErrorDataResult<News>(news);
+            }
+            return new SuccessDataResult<News>(news);
         }
 
         public IResult Update(News entity)

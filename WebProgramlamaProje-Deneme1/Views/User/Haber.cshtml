@@ -1,0 +1,85 @@
+﻿@model Entities.Concrete.News
+@using Microsoft.AspNetCore.Http;
+
+@{
+    if (Context.Session.GetInt32("IsAdmin").HasValue)
+    {
+        if (Context.Session.GetInt32("IsAdmin").Value == 1)
+        {
+            Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_LayoutUser.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+
+    }
+
+}
+
+<html>
+
+<head>
+    <title>HABERLER</title>
+</head>
+
+<body>
+
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+
+    <div class="container border border-info BodyContainer w-100">
+
+
+        <div class="row">
+            <div class="col-md-12 border haberbaslik">@Model.Title</div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 border haberIcerik">@Model.Contents</div>
+        </div>
+
+        <div class="popup">
+            <div class="popup-content">
+
+                <div class="loginBaslik">GİRİŞ YAPIN	<i id="close" class="far fa-times-circle"></i></div>
+
+                <div class="loginIcerik">
+                    <form method="post" action="" class="was-validated">
+
+                        <input type="email" class="form-control" placeholder="E-POSTA GİRİNİZ" required="" />
+
+                        <input type="password" class="form-control" placeholder="ŞİFRE GİRİNİZ" required="" />
+
+                        <button type="submit" class="btn btn-success float-start w-100 mt-3">Giriş Yap <i class="fas fa-sign-in-alt"></i></button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById("LoginPencere").addEventListener("click", function () {
+            document.querySelector(".popup").style.display = "flex";
+        });
+
+        document.getElementById("close").addEventListener("click", function () {
+            document.querySelector(".popup").style.display = "none";
+        });
+
+    </script>
+
+    <script>
+        $(window).on("load", function () {
+            $(".loader-container").fadeOut(900);
+        });
+    </script>
+
+</body>
+</html>
