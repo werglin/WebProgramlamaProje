@@ -12,17 +12,20 @@ namespace Business.Concrete
     public class UserManager : IUserService
     {
         IUserDal _userDal;
-        public UserManager(IUserDal userDal)
+        IBasketDal _basketDal;
+        public UserManager(IUserDal userDal, IBasketDal basketDal)
         {
             _userDal = userDal;
+            _basketDal = basketDal;
         }
 
         public IResult Add(User entity)
         {
-            if (GetByMail(entity.Email).Success == false)
+            if (GetByMail(entity.Email).Success)
             {
                 return new ErrorResult(Messages.MailAlreadyInUser);
             }
+            _basketDal.Add(entity.Basket);
             _userDal.Add(entity);
             return new SuccessResult(Messages.SuccessfullyAdded);
         }
