@@ -40,6 +40,7 @@ namespace WebProgramlamaProje_Deneme1.Controllers
                 if (userService.GetByMail(Email).Data.Password == Password)
                 {
                     HttpContext.Session.SetInt32("IsAdmin", 0);
+                    HttpContext.Session.SetString("Mail", Email);
                     return RedirectToAction("Index");
                 }
             }
@@ -49,19 +50,13 @@ namespace WebProgramlamaProje_Deneme1.Controllers
                 if (adminService.GetByMail(Email).Data.Password == Password)
                 {
                     HttpContext.Session.SetInt32("IsAdmin", 1);
+                    HttpContext.Session.SetString("Mail", Email);
                     return RedirectToAction("Index");
                 }
             }
             return RedirectToAction("Index");
         }
 
-        // GET: UserController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: UserController/Create
         public ActionResult KayitOl()
         {
             return View();
@@ -74,6 +69,7 @@ namespace WebProgramlamaProje_Deneme1.Controllers
         {
             userService.Add(new User {Name = Name, Email = Email, Password = Password, PhoneNumber = PhoneNumber, Basket = new Basket() });
             HttpContext.Session.SetInt32("IsAdmin", 0);
+            HttpContext.Session.SetString("Mail", Email);
             return RedirectToAction("Index");
         }
 
