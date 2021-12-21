@@ -19,13 +19,12 @@ namespace DataAccess.Concrete.EntityFramework
                              join rd in context.RentDeals
                              on c.Id equals rd.Car.Id
                              into tgt
-                             from subset in tgt.DefaultIfEmpty()
-                             where subset.RentDate >= dateTime
+                             from rd in tgt.DefaultIfEmpty()
+                             where rd == null || rd.RentDate > dateTime
                              orderby c.DailyPrice
                              orderby c.Brand
                              orderby c.ModelYear
-                             select new Car { Id = subset.Car.Id, Branch = subset.Car.Branch, Brand = subset.Car.Brand, DailyPrice = subset.Car.DailyPrice, 
-                             Description = subset.Car.Description, FuelType = subset.Car.FuelType, ModelYear = subset.Car.ModelYear, PhotoName = subset.Car.PhotoName, TypeOfGear = subset.Car.TypeOfGear};
+                             select c; 
                 return result.ToList();
             }
         }
@@ -39,23 +38,12 @@ namespace DataAccess.Concrete.EntityFramework
                              join rd in context.RentDeals
                              on c.Id equals rd.Car.Id
                              into tgt
-                             from subset in tgt.DefaultIfEmpty()
-                             where subset.RentDate >= dateTime
+                             from rd in tgt.DefaultIfEmpty()
+                             where rd == null || rd.RentDate > dateTime 
                              orderby c.DailyPrice
                              orderby c.Brand
                              orderby c.ModelYear
-                             select new Car
-                             {
-                                 Id = subset.Car.Id,
-                                 Branch = subset.Car.Branch,
-                                 Brand = subset.Car.Brand,
-                                 DailyPrice = subset.Car.DailyPrice,
-                                 Description = subset.Car.Description,
-                                 FuelType = subset.Car.FuelType,
-                                 ModelYear = subset.Car.ModelYear,
-                                 PhotoName = subset.Car.PhotoName,
-                                 TypeOfGear = subset.Car.TypeOfGear
-                             };
+                             select c;
                 return result.ToList();
             }
         }

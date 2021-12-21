@@ -494,7 +494,7 @@ nav li a:hover{
 	text-shadow: -2px 1px yellow;
 }
 
-.kirala button{
+.kirala a{
 	background-color:#fcf104;
 	font-weight: bold;
 	font-size: 23px;

@@ -35,10 +35,10 @@
 
     <div class="container border border-info BodyContainer">
 
-        <form method="post" asp-action="CarList">
+        <form method="post" asp-action="CarListWF">
             <div class="row">
                 <div class="col-lg-4 border Delivery">
-                    <select name="AlinacakYer">
+                    <select name="branchId">
                         <option selected disabled>Alış Noktası Seçiniz</option>
                         @foreach (var item in Model.Branches)
                         {
@@ -49,19 +49,11 @@
 
                 <div class="col-lg-4 border StartDate">
                     <label style="color: white" for="alis"><i class="fas fa-car"></i>Alış</label>
-                    <input type="date" id="alis" />
+                    <input type="date" id="alis" / name="rentDate">
                     <script>
                         document.getElementById('alis').valueAsDate = new Date();
                     </script>
 
-                </div>
-
-                <div class="col-lg-4 border EndDate">
-                    <label style="color:white" for="teslim"><i class="fas fa-car"></i>Teslim</label>
-                    <input type="date" id="teslim" />
-                    <script>
-                        document.getElementById('teslim').valueAsDate = new Date();
-                    </script>
                 </div>
 
             </div>
@@ -152,6 +144,9 @@
             <div><i class="fas fa-check-circle"></i>7/24 Destek ve Yol Yardımı</div>
         </div>
 
+        <br> <br/>
+        <br> <br/>
+
         <div class="tanitimClass">
             <h2><b>En Kolay, En Hızlı Ve En Ucuz Araç Kiralama</b></h2>
             <p>
@@ -176,7 +171,7 @@
                     <div class="row">
                         <div class="col-md-9 border" style="font-size: 18px"><p><b>@item.Summary</b></p></div>
                         <div class="col-md-3 border"> 
-                            <a asp-action="Haber" asp-route-id="@item.Id" class="btn w-100 h-100">Devamını Oku...</a>
+                            <a asp-action="Haber" asp-route-id="@item.Id" id="yonlendirButton" class="btn w-100 h-100">Devamını Oku...</a>
                         </div>
                     </div>
 

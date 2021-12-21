@@ -7,21 +7,12 @@ namespace WebProgramlamaProje_Deneme1.Models
 {
     public class FilterModel
     {
-        public FilterModel()
-        {
-            Brand = "";
-            FuelType = "";
-            TypeOfGear = "";
-            DailyPrice = 0;
-            BranchId = -1;
-            RentDate = DateTime.Today;
-        }
-        public string Brand { get; set; }
-        public string FuelType { get; set; }
-        public string TypeOfGear { get; set; }
-        public uint DailyPrice { get; set; }
-        public int BranchId { get; set; }
-        public DateTime RentDate { get; set; }
+        public string Brand = "";
+        public string FuelType = "";
+        public string TypeOfGear = "";
+        public uint DailyPrice =0;
+        public int BranchId = -1;
+        public DateTime RentDate = DateTime.Today;
 
         public List<Car> Filt(ICarService carService,IDealService dealService)
         {
@@ -29,7 +20,7 @@ namespace WebProgramlamaProje_Deneme1.Models
             if (BranchId == -1)
             {
                 return dealService.FilterListByDateTime( carService.GetAllWithLinq(x => x.Brand.Contains(Brand) &&
-                                           x.DailyPrice > DailyPrice &&
+                                           x.DailyPrice >= DailyPrice &&
                                            x.FuelType.Contains(FuelType) &&
                                            x.TypeOfGear.Contains(TypeOfGear)
                 ).Data  , RentDate).Data;
@@ -37,7 +28,7 @@ namespace WebProgramlamaProje_Deneme1.Models
 
 
             return dealService.FilterListByDateTime(carService.GetAllWithLinq(x => x.Brand.Contains(Brand) &&
-                                          x.DailyPrice > DailyPrice &&
+                                          x.DailyPrice >= DailyPrice &&
                                           x.FuelType.Contains(FuelType) &&
                                           x.TypeOfGear.Contains(TypeOfGear) &&
                                           x.Branch.Id == BranchId

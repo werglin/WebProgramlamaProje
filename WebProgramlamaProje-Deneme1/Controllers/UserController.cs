@@ -20,6 +20,8 @@ namespace WebProgramlamaProje_Deneme1.Controllers
         IBranchService branchService = new BranchManager(new EfBranchDal());
         IUserService userService = new UserManager(new EfUserDal(), new EfBasketDal());
         IAdminService adminService = new AdminManager(new EfAdminDal());
+        ICarService carService = new CarManager(new EfCarDal());
+        IDealService dealService = new DealManager(new EfRentDealDal());
         // GET: UserController
         public ActionResult Index()
         {
@@ -51,7 +53,7 @@ namespace WebProgramlamaProje_Deneme1.Controllers
                 {
                     HttpContext.Session.SetInt32("IsAdmin", 1);
                     HttpContext.Session.SetString("Mail", Email);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("AdminKayitliKullanicilar");
                 }
             }
             return RedirectToAction("Index");
@@ -92,10 +94,19 @@ namespace WebProgramlamaProje_Deneme1.Controllers
             }
             return RedirectToAction("Index");
         }
-
         public ActionResult CarList()
         {
-            return View();
+            return View(new CarListModel { Cars =carService.GetAll().Data, Branches = branchService.GetAll().Data });
+        }
+
+        [HttpPost]
+        public ActionResult CarListWF(DateTime rentDate , string brand = "", string fuelType = "", string typeOfGear = "", uint dailyPrice = 0, int branchId = -1)
+        {
+            if (brand == null)// bug fix : brand vs bugundan dolayı "" olsa bile null veriyor
+            {
+                brand = "";
+            }
+            return View(new CarListModel { Cars = new FilterModel { Brand = brand, BranchId = branchId, DailyPrice = dailyPrice, FuelType = fuelType, RentDate = rentDate, TypeOfGear = typeOfGear }.Filt(carService, dealService), Branches = branchService.GetAll().Data } );
         }
 
         public ActionResult ContUs()
