@@ -17,6 +17,7 @@ namespace WebProgramlamaProje_Deneme1.Controllers
         IMessageService messageService = new MessageManager(new EfMessageDal());
         ICarService carService = new CarManager(new EfCarDal());
         IBranchService branchService = new BranchManager(new EfBranchDal());
+        INewService newService = new NewsManager(new EfNewsDal());
         public IActionResult AdminKayitliKullanicilar()
         {
             return View(userService.GetAll().Data);
@@ -60,7 +61,19 @@ namespace WebProgramlamaProje_Deneme1.Controllers
 
         public IActionResult AdminHaber()
         {
-            return View(userService.GetAll().Data);
+            return View(newService.GetAll().Data);
+        }
+
+        public IActionResult HaberEkle(string photoName, string title, string summary, string contents)
+        {
+            newService.Add(new News {  Contents = contents,  PhotoName = photoName, Summary = summary, Title = title});
+            return RedirectToAction("AdminHaber", "Admin");
+        }
+
+        public IActionResult HaberSil(int id)
+        {
+            newService.Delete(newService.GetById(id).Data);
+            return RedirectToAction("AdminHaber", "Admin");
         }
     }
 }
