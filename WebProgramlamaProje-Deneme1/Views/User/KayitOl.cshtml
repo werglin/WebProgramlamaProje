@@ -1,4 +1,6 @@
-﻿
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 <html>
 
 <head>
@@ -21,7 +23,7 @@
                 <h2><b>KAYIT OL</b></h2>
             </div>
 
-            <form method="post" asp-action="KayitOlRes" class="was-validated">
+            <form method="post" asp-controller="User" asp-action="KayitOlRes" class="was-validated">
                 <div class="form-group">
                     <input class="form-control" placeholder="AD" pattern="[A-Za-zğüışöçZĞÜİŞÖÇ ]*" required="" name="Name">
                 </div>
@@ -52,29 +54,6 @@
             </form>
         </div>
 
-
-
-        <div class="popup">
-            <div class="popup-content">
-
-                <div class="loginBaslik">GİRİŞ YAPIN	<i id="close" class="far fa-times-circle"></i></div>
-
-                <div class="loginIcerik">
-                    <form method="post" action="" class="was-validated">
-
-                        <input type="email" class="form-control" placeholder="E-POSTA GİRİNİZ" required="" />
-
-                        <input type="password" class="form-control" placeholder="ŞİFRE GİRİNİZ" required="" />
-
-                        <button type="submit" class="btn btn-success float-start w-100 mt-3">Giriş Yap</button>
-
-                    </form>
-
-
-                </div>
-            </div>
-        </div>
-
     </div>
 
 
@@ -98,18 +77,6 @@
                 document.getElementById("SubmitButton").disabled = false;
             }
         }
-
-    </script>
-
-
-    <script>
-        document.getElementById("LoginPencere").addEventListener("click", function () {
-            document.querySelector(".popup").style.display = "flex";
-        });
-
-        document.getElementById("close").addEventListener("click", function () {
-            document.querySelector(".popup").style.display = "none";
-        });
 
     </script>
 

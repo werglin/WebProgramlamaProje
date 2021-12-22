@@ -43,7 +43,7 @@ namespace WebProgramlamaProje_Deneme1.Controllers
                 {
                     HttpContext.Session.SetInt32("IsAdmin", 0);
                     HttpContext.Session.SetString("Mail", Email);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Customer");
                 }
             }
             
@@ -53,7 +53,7 @@ namespace WebProgramlamaProje_Deneme1.Controllers
                 {
                     HttpContext.Session.SetInt32("IsAdmin", 1);
                     HttpContext.Session.SetString("Mail", Email);
-                    return RedirectToAction("AdminKayitliKullanicilar");
+                    return RedirectToAction("AdminKayitliKullanicilar", "Admin");
                 }
             }
             return RedirectToAction("Index");
@@ -72,7 +72,7 @@ namespace WebProgramlamaProje_Deneme1.Controllers
             userService.Add(new User {Name = Name, Email = Email, Password = Password, PhoneNumber = PhoneNumber, Basket = new Basket() });
             HttpContext.Session.SetInt32("IsAdmin", 0);
             HttpContext.Session.SetString("Mail", Email);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Customer");
         }
 
         public ActionResult Logout()
@@ -92,7 +92,7 @@ namespace WebProgramlamaProje_Deneme1.Controllers
             {
                 return View(newService.GetById(id).Data);
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "User");
         }
         public ActionResult CarList()
         {
@@ -113,49 +113,5 @@ namespace WebProgramlamaProje_Deneme1.Controllers
         {
             return View();
         }
-
-        /*
-        // GET: UserController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: UserController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: UserController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: UserController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-        */
     }
 }

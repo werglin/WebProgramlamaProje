@@ -24,17 +24,17 @@
                 </label>
 
                 <div class="logo-header">
-                    <a asp-action="index">
+                    <a asp-controller="Customer" asp-action="index">
                         <img src="/img/logo.png" alt="car" width="85px" height="64px" />
                     </a>
                 </div>
 
                 <ul>
-                    <li><a asp-action="Index">Anasayfa</a></li>
-                    <li><a asp-action="AboutUs">Hakkımızda</a></li>
-                    <li><a asp-action="CarList">Araç Listesi</a></li>
-                    <li><a asp-action="ContUs">İletişim</a></li>
-                    <li><a asp-action="Logout">Çıkış Yap</a></li>
+                    <li><a asp-controller="Customer" asp-action="Index">Anasayfa</a></li>
+                    <li><a asp-controller="Customer" asp-action="AboutUs">Hakkımızda</a></li>
+                    <li><a asp-controller="Customer" asp-action="CarList">Araç Listesi</a></li>
+                    <li><a asp-controller="Customer" asp-action="ContUs">İletişim</a></li>
+                    <li><a asp-controller="User" asp-action="Logout">Çıkış Yap</a></li>
                 </ul>
 
             </nav>
@@ -51,10 +51,10 @@
                 <div class="col-md-4 birinciBolum">
 
                     <h3 style="color:yellow">Sayfalar</h3>
-                    <div><a asp-action="Index">Anasayfa</a></div>
-                    <div><a asp-action="AboutUs">Hakkımızda</a></div>
-                    <div><a asp-action="CarList">Araç Listesi</a></div>
-                    <div><a asp-action="ContUs">İletişim</a></div>
+                    <div><a asp-controller="Customer" asp-action="Index">Anasayfa</a></div>
+                    <div><a asp-controller="Customer" asp-action="AboutUs">Hakkımızda</a></div>
+                    <div><a asp-controller="Customer" asp-action="CarList">Araç Listesi</a></div>
+                    <div><a asp-controller="Customer" asp-action="ContUs">İletişim</a></div>
 
                 </div>
 
@@ -93,17 +93,6 @@
             © 2021 | Sitenin Tüm hakları saklıdır.
         </div>
     </footer>
-
-    <script>
-        document.getElementById("LoginPencere").addEventListener("click", function () {
-            document.querySelector(".popup").style.display = "flex";
-        });
-
-        document.getElementById("close").addEventListener("click", function () {
-            document.querySelector(".popup").style.display = "none";
-        });
-
-    </script>
 
     <script>
         $(window).on("load", function () {

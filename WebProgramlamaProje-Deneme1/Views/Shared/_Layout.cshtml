@@ -24,17 +24,17 @@
                 </label>
 
                 <div class="logo-header">
-                    <a asp-action="Index">
+                    <a asp-controller="User" asp-action="Index">
                         <img src="/img/logo.png" alt="car" width="85px" height="64px" />
                     </a>
                 </div>
 
                 <ul>
-                    <li><a asp-action="Index">Anasayfa</a></li>
-                    <li><a asp-action="AboutUs">Hakkımızda</a></li>
-                    <li><a asp-action="CarList">Araç Listesi</a></li>
-                    <li><a asp-action="ContUs">İletişim</a></li>
-                    <li><a asp-action="KayitOl">Üye Ol</a></li>
+                    <li><a asp-controller="User" asp-action="Index">Anasayfa</a></li>
+                    <li><a asp-controller="User" asp-action="AboutUs">Hakkımızda</a></li>
+                    <li><a asp-controller="User" asp-action="CarList">Araç Listesi</a></li>
+                    <li><a asp-controller="User" asp-action="ContUs">İletişim</a></li>
+                    <li><a asp-controller="User" asp-action="KayitOl">Üye Ol</a></li>
                     <li class="active"><a id="LoginPencere" href="#" style="color: black">Giriş Yap</a></li>
                 </ul>
 
@@ -52,11 +52,11 @@
                 <div class="col-md-4 birinciBolum">
 
                     <h3 style="color:yellow">Sayfalar</h3>
-                    <div><a asp-action="Index">Anasayfa</a></div>
-                    <div><a asp-action="AboutUs">Hakkımızda</a></div>
-                    <div><a asp-action="CarList">Araç Listesi</a></div>
-                    <div><a asp-action="ContUs">İletişim</a></div>
-                    <div><a asp-action="KayitOl">Üye Ol</a></div>
+                    <div><a asp-controller="User" asp-action="Index">Anasayfa</a></div>
+                    <div><a asp-controller="User" asp-action="AboutUs">Hakkımızda</a></div>
+                    <div><a asp-controller="User" asp-action="CarList">Araç Listesi</a></div>
+                    <div><a asp-controller="User" asp-action="ContUs">İletişim</a></div>
+                    <div><a asp-controller="User" asp-action="KayitOl">Üye Ol</a></div>
 
                 </div>
 
@@ -96,33 +96,57 @@
         </div>
     </footer>
 
-    <script>
-        document.getElementById("LoginPencere").addEventListener("click", function () {
-            document.querySelector(".popup").style.display = "flex";
-        });
+    <div class="container border-dark border-info BodyContainer">
+        <div class="popup">
+            <div class="popup-content">
 
-        document.getElementById("close").addEventListener("click", function () {
-            document.querySelector(".popup").style.display = "none";
-        });
+                <div class="loginBaslik">GİRİŞ YAPIN	<i id="close" class="far fa-times-circle"></i></div>
 
-    </script>
+                <div class="loginIcerik">
+                    <form method="post" asp-controller="User" asp-action="Giris" class="was-validated">
 
-    <script>
-        $(window).on("load", function () {
-            $(".loader-container").fadeOut(900);
-        });
-    </script>
+                        <input type="email" class="form-control" placeholder="E-POSTA GİRİNİZ" required="" name="Email" />
+
+                        <input type="password" class="form-control" placeholder="ŞİFRE GİRİNİZ" required="" name="Password" />
+
+                        <button type="submit" class="btn btn-success float-start w-100 mt-3">Giriş Yap <i class="fas fa-sign-in-alt"></i></button>
+
+                    </form>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+                </div>
+                </div>
+            </div>
+        </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <script>
+            document.getElementById("LoginPencere").addEventListener("click", function () {
+                document.querySelector(".popup").style.display = "flex";
+            });
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+            document.getElementById("close").addEventListener("click", function () {
+                document.querySelector(".popup").style.display = "none";
+            });
+
+        </script>
+
+        <script>
+            $(window).on("load", function () {
+                $(".loader-container").fadeOut(900);
+            });
+        </script>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @RenderSection("Scripts", required: false)
 </body>
 </html>

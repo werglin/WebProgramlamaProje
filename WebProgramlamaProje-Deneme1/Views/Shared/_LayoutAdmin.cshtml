@@ -24,17 +24,17 @@
                 </label>
 
                 <div class="logo-header">
-                    <a asp-action="AdminKayitliKullanicilar">
+                    <a asp-controller="Admin" asp-action="AdminKayitliKullanicilar">
                         <img src="/img/logo.png" alt="car" width="85px" height="64px" />
                     </a>
                 </div>
 
                 <ul>
-                    <li><a asp-action="AdminHaber">Admin-Haberler</a></li>
-                    <li><a asp-action="AdminMesajlar">Admin-Mesajlar</a></li>
-                    <li><a asp-action="AdminAraba">Admin-Araçlar</a></li>
-                    <li><a asp-action="AdminKayitliKullanicilar">Admin-Kullanıcılar</a></li>
-                    <li><a asp-action="Logout">Çıkış Yap</a></li>
+                    <li><a asp-controller="Admin" asp-action="AdminHaber">Admin-Haberler</a></li>
+                    <li><a asp-controller="Admin" asp-action="AdminMesajlar">Admin-Mesajlar</a></li>
+                    <li><a asp-controller="Admin" asp-action="AdminAraba">Admin-Araçlar</a></li>
+                    <li><a asp-controller="Admin" asp-action="AdminKayitliKullanicilar">Admin-Kullanıcılar</a></li>
+                    <li><a asp-controller="User" asp-action="Logout">Çıkış Yap</a></li>
 
                 </ul>
 
@@ -52,10 +52,10 @@
                 <div class="col-md-4 birinciBolum">
 
                     <h3 style="color:yellow">Sayfalar</h3>
-                    <div><a asp-action="AdminHaber">Admin-Haberler</a></div>
-                    <div><a asp-action="AdminMesajlar">Admin-Mesajlar</a></div>
-                    <div><a asp-action="AdminAraba">Admin-Araçlar</a></div>
-                    <div><a asp-action="AdminKayitliKullanicilar">Admin-Kullanıcılar</a></div>
+                    <div><a asp-controller="Admin" asp-action="AdminHaber">Admin-Haberler</a></div>
+                    <div><a asp-controller="Admin" asp-action="AdminMesajlar">Admin-Mesajlar</a></div>
+                    <div><a asp-controller="Admin" asp-action="AdminAraba">Admin-Araçlar</a></div>
+                    <div><a asp-controller="Admin" asp-action="AdminKayitliKullanicilar">Admin-Kullanıcılar</a></div>
 
                 </div>
 
@@ -94,17 +94,6 @@
             © 2021 | Sitenin Tüm hakları saklıdır.
         </div>
     </footer>
-
-    <script>
-        document.getElementById("LoginPencere").addEventListener("click", function () {
-            document.querySelector(".popup").style.display = "flex";
-        });
-
-        document.getElementById("close").addEventListener("click", function () {
-            document.querySelector(".popup").style.display = "none";
-        });
-
-    </script>
 
     <script>
         $(window).on("load", function () {
