@@ -13,6 +13,7 @@ namespace WebProgramlamaProje_Deneme1.Models
         public uint DailyPrice =0;
         public int BranchId = -1;
         public DateTime RentDate = DateTime.Today;
+        public DateTime DeliverDate = DateTime.Today;
 
         public List<Car> Filt(ICarService carService,IDealService dealService)
         {
@@ -23,7 +24,7 @@ namespace WebProgramlamaProje_Deneme1.Models
                                            x.DailyPrice >= DailyPrice &&
                                            x.FuelType.Contains(FuelType) &&
                                            x.TypeOfGear.Contains(TypeOfGear)
-                ).Data  , RentDate).Data;
+                ).Data  , RentDate, DeliverDate).Data;
             }
 
 
@@ -32,7 +33,7 @@ namespace WebProgramlamaProje_Deneme1.Models
                                           x.FuelType.Contains(FuelType) &&
                                           x.TypeOfGear.Contains(TypeOfGear) &&
                                           x.Branch.Id == BranchId
-                ).Data, RentDate).Data;
+                ).Data, RentDate, DeliverDate).Data;
         }
     }
 }

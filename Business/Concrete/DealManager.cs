@@ -18,6 +18,21 @@ namespace Business.Concrete
         }
         public IResult Add(RentDeal entity)
         {
+            foreach (var item in GetDealsOfCar(entity.Car).Data)
+            {
+                if (entity.RentDate == item.RentDate)
+                {
+                    return new ErrorResult();
+                }
+                if (entity.RentDate < item.RentDate&& entity.DeliveryDate >= item.RentDate)
+                {
+                    return new ErrorResult();
+                }
+                if (entity.RentDate > item.RentDate&& entity.RentDate <= item.DeliveryDate)
+                {
+                    return new ErrorResult();
+                }
+            }
             _dealDal.Add(entity);
             return new SuccessResult(Messages.SuccessfullyAdded);
         }
@@ -28,9 +43,9 @@ namespace Business.Concrete
             return new SuccessResult(Messages.SuccessfullyDeleted);
         }
 
-        public IDataResult<List<Car>> FilterListByDateTime( List<Car> cars,  DateTime dateTime)
+        public IDataResult<List<Car>> FilterListByDateTime( List<Car> cars,  DateTime dateTime, DateTime deliverDate)
         {
-            return new SuccessDataResult<List<Car>>(_dealDal.GetUnorderedCarsFRList(cars, dateTime));
+            return new SuccessDataResult<List<Car>>(_dealDal.GetUnorderedCarsFRList(cars, dateTime, deliverDate));
         }
 
         public IDataResult<List<RentDeal>> GetAll()
@@ -38,9 +53,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<RentDeal>>(_dealDal.GetAll(), Messages.ObjectSuccessfullyReturned);
         }
 
-        public IDataResult<List<Car>> GetAvailableCars(ref DateTime dateTime)
+        public IDataResult<List<Car>> GetAvailableCars(DateTime rentTime, DateTime deliverDate)
         {
-            return new SuccessDataResult<List<Car>>(_dealDal.GetUnorderedCars(dateTime));
+            return new SuccessDataResult<List<Car>>(_dealDal.GetUnorderedCars(rentTime, deliverDate ));
         }
 
         public IDataResult<RentDeal> GetById(int id)

@@ -104,13 +104,13 @@ namespace WebProgramlamaProje_Deneme1.Controllers
         }
 
         [HttpPost]
-        public ActionResult CarListWF(DateTime rentDate , string brand = "", string fuelType = "", string typeOfGear = "", uint dailyPrice = 0, int branchId = -1)
+        public ActionResult CarListWF(DateTime rentDate, DateTime deliverDate , string brand = "", string fuelType = "", string typeOfGear = "", uint dailyPrice = 0, int branchId = -1)
         {
             if (brand == null)// bug fix : brand vs bugundan dolayı "" olsa bile null veriyor
             {
                 brand = "";
             }
-            return View(new CarListModel { Cars = new FilterModel { Brand = brand, BranchId = branchId, DailyPrice = dailyPrice, FuelType = fuelType, RentDate = rentDate, TypeOfGear = typeOfGear }.Filt(carService, dealService), Branches = branchService.GetAll().Data } );
+            return View(new CarListModel { Cars = new FilterModel { Brand = brand, BranchId = branchId, DailyPrice = dailyPrice, FuelType = fuelType, RentDate = rentDate, TypeOfGear = typeOfGear , DeliverDate = deliverDate}.Filt(carService, dealService), Branches = branchService.GetAll().Data } );
         }
 
         public ActionResult ContUs()

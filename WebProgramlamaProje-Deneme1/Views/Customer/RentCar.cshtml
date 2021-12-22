@@ -1,5 +1,97 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Entities.Concrete.Car
 @{
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
+<html>
+
+<head>
+    <title>ARAÇ KİRALA</title>
+</head>
+
+<body>
+    <div class="container border-dark border-info BodyContainer">
+
+        <div class="row">
+            <div class="col-md-6 border border-dark aracKiralaMarka">@Model.Brand</div>
+            <div class="col-md-6 border border-dark aracKiralaUst">
+                <div class="border border-dark h-100 w-50 float-start">
+                    <i class="fas fa-gas-pump"></i> @Model.FuelType
+                </div>
+                <div class="border border-dark h-100 w-50 float-end">
+                    <i class="fas fa-arrows-alt"></i> @Model.TypeOfGear
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-4 border border-dark">
+                <img src="/img/@Model.PhotoName" class="w-100 h-100" />
+            </div>
+            <div class="col-md-4 border border-dark aracBilgiler">
+                <div class="border border-dark aracBaslik">Alış Yeri</div>
+                <div class="border border-dark">@Model.Branch.Adress</div>
+                <div class="border border-dark aracBaslik">Alış Tarihi</div>
+                <div class="border border-dark">12.12.2021</div>
+                <div class="border border-dark aracBaslik">Dönüş Tarihi</div>
+                <div class="border border-dark">20.12.2021</div>
+            </div>
+            <div class="col-md-4 border border-dark aracBilgiler">
+                <div class="border border-dark aracBaslik">Günlük Ücret</div>
+                <div class="border border-dark">30TL</div>
+                <div class="border border-dark aracBaslik">Kiralama Süresi</div>
+                <div class="border border-dark">3</div>
+                <div class="border border-dark aracBaslik">Toplam Ücret</div>
+                <div class="border border-dark">90</div>
+            </div>
+
+        </div>
+
+        <br><br><br><br>
+
+        <div class="row">
+            <div class="col-md-12 border border-dark surucuBilgi">
+                <h2><b>SÜRÜCÜ BİLGİLERİ</b></h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 border border-dark formBilgiler">
+
+                <form method="post" action="Rezervasyon.html" class="was-validated">
+                    <div class="form-group">
+                        <label for="ad"><b>AD</b></label>
+                        <input id="ad" class="form-control" pattern="[A-Za-zğüışöçZĞÜİŞÖÇ ]*" required="" />
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="soyad"><b>SOYAD</b></label>
+                        <input id="soyad" class="form-control" pattern="[A-Za-zğüışöçZĞÜİŞÖÇ ]*" required="" />
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="cepTel"><b>11 HANELİ CEP TELEFONU</b></label>
+                        <input type="tel" id="cepTel" class="form-control" required="" pattern="[0-9]{11}" />
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="ePosta"><b>E-POSTA</b></label>
+                        <input type="email" id="ePosta" class="form-control" required="" />
+                    </div>
+
+                    <br>
+
+                    <button type="submit" class="btn btn-warning w-100">Rezervasyonu Tamamla</button>
+
+
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>

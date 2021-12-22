@@ -10,7 +10,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfRentDealDal : EfEntityRepositoryBase<RentDeal, ProjeContext>, IRentDealDal
     {
-        public List<Car> GetUnorderedCars(DateTime dateTime)
+        public List<Car> GetUnorderedCars(DateTime rentTime, DateTime deliverTime)
         {
             using (ProjeContext context = new ProjeContext())
             {
@@ -20,7 +20,7 @@ namespace DataAccess.Concrete.EntityFramework
                              on c.Id equals rd.Car.Id
                              into tgt
                              from rd in tgt.DefaultIfEmpty()
-                             where rd == null || rd.RentDate > dateTime
+                             where rd == null || rd.DeliveryDate < rentTime || (rd.RentDate > rentTime && rd.RentDate > deliverTime)
                              orderby c.DailyPrice
                              orderby c.Brand
                              orderby c.ModelYear
@@ -29,7 +29,7 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
-        public List<Car> GetUnorderedCarsFRList(List<Car> cars, DateTime dateTime)
+        public List<Car> GetUnorderedCarsFRList(List<Car> cars, DateTime rentTime, DateTime deliverTime)
         {
             using (ProjeContext context = new ProjeContext())
             {
@@ -39,7 +39,7 @@ namespace DataAccess.Concrete.EntityFramework
                              on c.Id equals rd.Car.Id
                              into tgt
                              from rd in tgt.DefaultIfEmpty()
-                             where rd == null || rd.RentDate > dateTime 
+                             where rd == null || rd.DeliveryDate< rentTime || (rd.RentDate > rentTime && rd.RentDate > deliverTime ) 
                              orderby c.DailyPrice
                              orderby c.Brand
                              orderby c.ModelYear
