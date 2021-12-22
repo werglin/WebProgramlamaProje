@@ -21,5 +21,6 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<RentDeal> RentDeals { get; set; }
         public DbSet<Branch> Branches { get; set; }
         public DbSet<News> News { get; set; }
+        public DbSet<Message> Messages { get; set; }
     }
 }
