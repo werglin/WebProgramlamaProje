@@ -22,6 +22,7 @@ namespace WebProgramlamaProje_Deneme1.Controllers
         IAdminService adminService = new AdminManager(new EfAdminDal());
         ICarService carService = new CarManager(new EfCarDal());
         IDealService dealService = new DealManager(new EfRentDealDal());
+        IMessageService messageService = new MessageManager(new EfMessageDal());
         // GET: UserController
         public ActionResult Index()
         {
@@ -39,9 +40,11 @@ namespace WebProgramlamaProje_Deneme1.Controllers
         {
             if (userService.GetByMail(Email).Success)
             {
-                if (userService.GetByMail(Email).Data.Password == Password)
+                User user = userService.GetByMail(Email).Data;
+                if (user.Password == Password)
                 {
                     HttpContext.Session.SetInt32("IsAdmin", 0);
+                    HttpContext.Session.SetString("Name", user.Name);
                     HttpContext.Session.SetString("Mail", Email);
                     return RedirectToAction("Index", "Customer");
                 }
@@ -71,6 +74,7 @@ namespace WebProgramlamaProje_Deneme1.Controllers
         {
             userService.Add(new User {Name = Name, Email = Email, Password = Password, PhoneNumber = PhoneNumber, Basket = new Basket() });
             HttpContext.Session.SetInt32("IsAdmin", 0);
+            HttpContext.Session.SetString("Name", Name);
             HttpContext.Session.SetString("Mail", Email);
             return RedirectToAction("Index", "Customer");
         }
@@ -110,6 +114,17 @@ namespace WebProgramlamaProje_Deneme1.Controllers
         }
 
         public ActionResult ContUs()
+        {
+            return View();
+        }
+
+        public ActionResult ContUpdate(string name, string mail , string content)
+        {
+            messageService.Add(new Message {OneWhoSendName = name, Email = mail, Content = content });
+            return RedirectToAction("Index", "User");
+        }
+
+        public ActionResult EnterAgain()
         {
             return View();
         }

@@ -18,6 +18,7 @@ namespace WebProgramlamaProje_Deneme1.Controllers
         IBranchService branchService = new BranchManager(new EfBranchDal());
         ICarService carService = new CarManager(new EfCarDal());
         IDealService dealService = new DealManager(new EfRentDealDal());
+        IMessageService messageService = new MessageManager(new EfMessageDal());
         // GET: UserController
         public ActionResult Index()
         {
@@ -62,6 +63,16 @@ namespace WebProgramlamaProje_Deneme1.Controllers
         public ActionResult ContUs()
         {
             return View();
+        }
+
+        public ActionResult ContUpdate( string content)
+        {
+            if (HttpContext.Session.GetInt32("IsAdmin").HasValue == false)
+            {
+                return RedirectToAction("EnterAgain", "User");
+            }
+            messageService.Add(new Message { OneWhoSendName = HttpContext.Session.GetString("Name"), Email = HttpContext.Session.GetString("Mail"), Content = content });
+            return RedirectToAction("Index", "Customer");
         }
 
         public ActionResult RentCar()
