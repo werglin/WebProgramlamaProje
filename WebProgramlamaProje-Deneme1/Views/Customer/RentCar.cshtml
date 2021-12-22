@@ -32,18 +32,11 @@
             <div class="col-md-4 border border-dark aracBilgiler">
                 <div class="border border-dark aracBaslik">Alış Yeri</div>
                 <div class="border border-dark">@Model.Branch.Adress</div>
-                <div class="border border-dark aracBaslik">Alış Tarihi</div>
-                <div class="border border-dark">12.12.2021</div>
-                <div class="border border-dark aracBaslik">Dönüş Tarihi</div>
-                <div class="border border-dark">20.12.2021</div>
+
             </div>
             <div class="col-md-4 border border-dark aracBilgiler">
                 <div class="border border-dark aracBaslik">Günlük Ücret</div>
-                <div class="border border-dark">30TL</div>
-                <div class="border border-dark aracBaslik">Kiralama Süresi</div>
-                <div class="border border-dark">3</div>
-                <div class="border border-dark aracBaslik">Toplam Ücret</div>
-                <div class="border border-dark">90</div>
+                <div class="border border-dark">@Model.DailyPrice</div>
             </div>
 
         </div>
@@ -51,35 +44,31 @@
         <br><br><br><br>
 
         <div class="row">
-            <div class="col-md-12 border border-dark surucuBilgi">
-                <h2><b>SÜRÜCÜ BİLGİLERİ</b></h2>
-            </div>
-        </div>
-
-        <div class="row">
             <div class="col-md-12 border border-dark formBilgiler">
 
-                <form method="post" action="Rezervasyon.html" class="was-validated">
-                    <div class="form-group">
-                        <label for="ad"><b>AD</b></label>
-                        <input id="ad" class="form-control" pattern="[A-Za-zğüışöçZĞÜİŞÖÇ ]*" required="" />
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="soyad"><b>SOYAD</b></label>
-                        <input id="soyad" class="form-control" pattern="[A-Za-zğüışöçZĞÜİŞÖÇ ]*" required="" />
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="cepTel"><b>11 HANELİ CEP TELEFONU</b></label>
-                        <input type="tel" id="cepTel" class="form-control" required="" pattern="[0-9]{11}" />
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="ePosta"><b>E-POSTA</b></label>
-                        <input type="email" id="ePosta" class="form-control" required="" />
+                <form method="post" asp-controller="Customer" asp-action="RentIt" class="was-validated">
+
+                    <div class="col-md-12 border border-dark surucuBilgi">
+                        <h2><b>TARİH BİLGİLERİ</b></h2>
                     </div>
 
+                    <div class="border border-dark aracBaslik">Alış Tarihi</div>
+                    <div class="border border-dark">
+                        <input id="alisTH" type="date" />
+                        <script>
+                            document.getElementById('alisTH').valueAsDate = new Date();
+                        </script>
+                    </div>
+
+                    <div class="border border-dark aracBaslik">Dönüş Tarihi</div>
+                    <div class="border border-dark">
+                        <input id="donusTH" type="date" />
+                        <script>
+                            document.getElementById('donusTH').valueAsDate = new Date();
+                        </script>
+                    </div>
+
+                    
                     <br>
 
                     <button type="submit" class="btn btn-warning w-100">Rezervasyonu Tamamla</button>

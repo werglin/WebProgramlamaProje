@@ -20,15 +20,7 @@ namespace Business.Concrete
         {
             foreach (var item in GetDealsOfCar(entity.Car).Data)
             {
-                if (entity.RentDate == item.RentDate)
-                {
-                    return new ErrorResult();
-                }
-                if (entity.RentDate < item.RentDate&& entity.DeliveryDate >= item.RentDate)
-                {
-                    return new ErrorResult();
-                }
-                if (entity.RentDate > item.RentDate&& entity.RentDate <= item.DeliveryDate)
+                if (!(item.DeliveryDate < entity.RentDate || (item.RentDate > entity.RentDate && item.RentDate > entity.DeliveryDate)))
                 {
                     return new ErrorResult();
                 }

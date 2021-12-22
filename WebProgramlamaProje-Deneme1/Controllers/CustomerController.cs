@@ -75,9 +75,12 @@ namespace WebProgramlamaProje_Deneme1.Controllers
             return RedirectToAction("Index", "Customer");
         }
 
-        public ActionResult RentCar()
+        public ActionResult RentCar(int id)// admin ayarlandıktan sonra yapılacak
         {
-            return View();
+            Car car = carService.GetById(id).Data;
+            // bug fix : vs car.Branch.Adress'i null olarak görüyor
+            car.Branch.Adress = branchService.GetById(car.Branch.Id).Data.Adress; 
+            return View(car);
         }
 
         public ActionResult RentIt()
