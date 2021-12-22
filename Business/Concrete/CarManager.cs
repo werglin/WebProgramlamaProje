@@ -27,10 +27,6 @@ namespace Business.Concrete
             {
                 return new ErrorResult(Messages.InvalidDailyPrice);
             }
-            if (entity.ModelYear < 1769 || entity.ModelYear > 32767)
-            {
-                return new ErrorResult(Messages.InvalidModelYear);
-            }
             _carDal.Add(entity);
             return new SuccessResult(Messages.SuccessfullyAdded);
         }

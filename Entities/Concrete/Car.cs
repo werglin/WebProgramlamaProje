@@ -15,8 +15,6 @@ namespace Entities.Concrete
         public string Brand { get; set; }
         [Required]
         public uint DailyPrice { get; set; }
-        [Required]
-        public short ModelYear { get; set; }
         [MaxLength(10)]
         [Required]
         public string FuelType { get; set; }
@@ -27,7 +25,6 @@ namespace Entities.Concrete
         [MaxLength(250)]
         public string Description { get; set; }
         [Required]
-        [ForeignKey("BranchId")]
-        public Branch Branch { get; set; }
+        public int BranchId { get; set; }
     }
 }

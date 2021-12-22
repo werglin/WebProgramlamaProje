@@ -32,6 +32,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Branch>>(_branchDal.GetAll());
         }
 
+        public IDataResult<Branch> GetByAdress(string Adress)
+        {
+            return new SuccessDataResult<Branch>(_branchDal.Get(x => x.Adress.Contains(Adress)));
+        }
+
         public IDataResult<Branch> GetById(int id)
         {
             return new SuccessDataResult<Branch>(_branchDal.Get(x => x.Id == id));

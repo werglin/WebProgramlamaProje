@@ -32,7 +32,7 @@ namespace WebProgramlamaProje_Deneme1.Models
                                           x.DailyPrice >= DailyPrice &&
                                           x.FuelType.Contains(FuelType) &&
                                           x.TypeOfGear.Contains(TypeOfGear) &&
-                                          x.Branch.Id == BranchId
+                                          x.BranchId== BranchId
                 ).Data, RentDate, DeliverDate).Data;
         }
     }

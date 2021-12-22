@@ -1,4 +1,4 @@
-﻿@model Entities.Concrete.Car
+﻿@model RentCarModel
 @{
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
@@ -12,13 +12,13 @@
     <div class="container border-dark border-info BodyContainer">
 
         <div class="row">
-            <div class="col-md-6 border border-dark aracKiralaMarka">@Model.Brand</div>
+            <div class="col-md-6 border border-dark aracKiralaMarka">@Model.Car.Brand</div>
             <div class="col-md-6 border border-dark aracKiralaUst">
                 <div class="border border-dark h-100 w-50 float-start">
-                    <i class="fas fa-gas-pump"></i> @Model.FuelType
+                    <i class="fas fa-gas-pump"></i> @Model.Car.FuelType
                 </div>
                 <div class="border border-dark h-100 w-50 float-end">
-                    <i class="fas fa-arrows-alt"></i> @Model.TypeOfGear
+                    <i class="fas fa-arrows-alt"></i> @Model.Car.TypeOfGear
                 </div>
 
             </div>
@@ -27,7 +27,7 @@
         <div class="row">
 
             <div class="col-md-4 border border-dark">
-                <img src="/img/@Model.PhotoName" class="w-100 h-100" />
+                <img src="/img/@Model.Car.PhotoName" class="w-100 h-100" />
             </div>
             <div class="col-md-4 border border-dark aracBilgiler">
                 <div class="border border-dark aracBaslik">Alış Yeri</div>
@@ -36,7 +36,7 @@
             </div>
             <div class="col-md-4 border border-dark aracBilgiler">
                 <div class="border border-dark aracBaslik">Günlük Ücret</div>
-                <div class="border border-dark">@Model.DailyPrice</div>
+                <div class="border border-dark">@Model.Car.DailyPrice</div>
             </div>
 
         </div>

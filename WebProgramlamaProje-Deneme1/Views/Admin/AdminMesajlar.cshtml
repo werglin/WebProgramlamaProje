@@ -1,0 +1,49 @@
+﻿@model List<Entities.Concrete.Message>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<html>
+
+<head>
+    <title>ADMİN MESAJLAR</title>
+</head>
+
+<body>
+
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+
+    <div class="container border border-info BodyContainer w-100">
+
+
+        <div class="border border-dark GelenMesajBaslik"><h2><b>GELEN MESAJLAR</b></h2></div>
+        <br>
+
+        <div>
+            @foreach (var item in Model)
+            {
+                <div class="row">
+                    <div class="col-md-2 border AdminTabloBaslik">AD-SOYAD :</div>
+                    <div class="col-md-10 border AdminTabloCevap">@item.OneWhoSendName</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 border AdminTabloBaslik">E-POSTA :</div>
+                    <div class="col-md-10 border AdminTabloCevap">@item.Email</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 border AdminTabloBaslik">MESAJ :</div>
+                    <div class="col-md-10 border AdminTabloCevap">@item.Content</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 border AdminTabloBaslik">
+                        <a asp-controller="Admin" asp-action="AdminMesajSil" asp-route-id="@item.Id" class="btn btn-warning w-100 h-100">Mesajı Sil
+                        </a>
+                    </div>
+                </div>
+                <br><br>
+            }
+        </div>
+    </div>
+</body>
+</html>

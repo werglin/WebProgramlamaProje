@@ -77,10 +77,9 @@ namespace WebProgramlamaProje_Deneme1.Controllers
 
         public ActionResult RentCar(int id)// admin ayarlandıktan sonra yapılacak
         {
-            Car car = carService.GetById(id).Data;
-            // bug fix : vs car.Branch.Adress'i null olarak görüyor
-            car.Branch.Adress = branchService.GetById(car.Branch.Id).Data.Adress; 
-            return View(car);
+            RentCarModel rentCarModel = new RentCarModel {Car = carService.GetById(id).Data };
+            rentCarModel.Branch = branchService.GetById(rentCarModel.Car.BranchId).Data;
+            return View(rentCarModel);
         }
 
         public ActionResult RentIt()

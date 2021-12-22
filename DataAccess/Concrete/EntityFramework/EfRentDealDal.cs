@@ -23,7 +23,6 @@ namespace DataAccess.Concrete.EntityFramework
                              where rd == null || rd.DeliveryDate < rentTime || (rd.RentDate > rentTime && rd.RentDate > deliverTime)
                              orderby c.DailyPrice
                              orderby c.Brand
-                             orderby c.ModelYear
                              select c; 
                 return result.ToList();
             }
@@ -42,7 +41,6 @@ namespace DataAccess.Concrete.EntityFramework
                              where rd == null || rd.DeliveryDate< rentTime || (rd.RentDate > rentTime && rd.RentDate > deliverTime ) 
                              orderby c.DailyPrice
                              orderby c.Brand
-                             orderby c.ModelYear
                              select c;
                 return result.ToList();
             }
