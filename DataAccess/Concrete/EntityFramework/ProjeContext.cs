@@ -10,8 +10,9 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=WebProgramlamaProje;Trusted_Connection=true", 
+            optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\""+System.IO.Directory.GetCurrentDirectory()+ "\\_Database\\WebProgramlamaProje.mdf\";Integrated Security=True",
                 b => b.MigrationsAssembly("DataAccess"));
+
             //base.OnConfiguring(optionsBuilder);
         }
         public DbSet<Car> Cars { get; set; }
