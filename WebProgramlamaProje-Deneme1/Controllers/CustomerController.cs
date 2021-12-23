@@ -19,6 +19,7 @@ namespace WebProgramlamaProje_Deneme1.Controllers
         ICarService carService = new CarManager(new EfCarDal());
         IDealService dealService = new DealManager(new EfRentDealDal());
         IMessageService messageService = new MessageManager(new EfMessageDal());
+        IUserService userService = new UserManager(new EfUserDal(), new EfBasketDal());
         // GET: UserController
         public ActionResult Index()
         {
@@ -57,6 +58,10 @@ namespace WebProgramlamaProje_Deneme1.Controllers
             {
                 brand = "";
             }
+            if (rentDate > deliverDate)
+            {
+                deliverDate = rentDate;
+            }
             return View(new CarListModel { Cars = new FilterModel { Brand = brand, BranchId = branchId, DailyPrice = dailyPrice, FuelType = fuelType, RentDate = rentDate, TypeOfGear = typeOfGear, DeliverDate = deliverDate }.Filt(carService, dealService), Branches = branchService.GetAll().Data });
         }
 
@@ -82,8 +87,13 @@ namespace WebProgramlamaProje_Deneme1.Controllers
             return View(rentCarModel);
         }
 
-        public ActionResult RentIt()
+        public ActionResult RentIt(DateTime rentDate, DateTime deliverDate, int carId)
         {
+            if (HttpContext.Session.GetInt32("IsAdmin").HasValue == false)
+            {
+                return RedirectToAction("EnterAgain", "User");
+            }
+            dealService.Add(new RentDeal { Car = carService.GetById(carId).Data, RentDate = rentDate, DeliveryDate = deliverDate, User = userService.GetByMail(HttpContext.Session.GetString("Mail")).Data});
             return RedirectToAction("ResComp", "Customer");
         }
 

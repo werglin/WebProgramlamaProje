@@ -24,7 +24,9 @@ namespace Entities.Concrete
         public string PhotoName { get; set; }
         [MaxLength(250)]
         public string Description { get; set; }
-        [Required]
+        [ForeignKey("Branch")]
         public int BranchId { get; set; }
+        [Required]
+        public Branch Branch { get; set; }
     }
 }

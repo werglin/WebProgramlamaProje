@@ -17,7 +17,7 @@ namespace DataAccess.Concrete.EntityFramework
                 // left join car 
                 var result = from c in context.Cars
                              join rd in context.RentDeals
-                             on c.Id equals rd.Car.Id
+                             on c.Id equals rd.CarId
                              into tgt
                              from rd in tgt.DefaultIfEmpty()
                              where rd == null || rd.DeliveryDate < rentTime || (rd.RentDate > rentTime && rd.RentDate > deliverTime)
@@ -35,7 +35,7 @@ namespace DataAccess.Concrete.EntityFramework
                 // left join cars
                 var result = from c in cars
                              join rd in context.RentDeals
-                             on c.Id equals rd.Car.Id
+                             on c.Id equals rd.CarId
                              into tgt
                              from rd in tgt.DefaultIfEmpty()
                              where rd == null || rd.DeliveryDate< rentTime || (rd.RentDate > rentTime && rd.RentDate > deliverTime ) 

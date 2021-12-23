@@ -11,17 +11,17 @@ namespace Entities.Concrete
     {
         [Key]
         public int Id { get; set; }
-        [ForeignKey("UserId")]
+        [ForeignKey("User")]
+        public int UserId { get; set; }
         [Required]
         public User User { get; set; }
+        [ForeignKey("Car")]
+        public int CarId { get; set; }
         [Required]
-        [ForeignKey("CarId")]
         public Car Car { get; set; }
         [Required]
         public DateTime RentDate { get; set; }
         [Required]
         public DateTime DeliveryDate { get; set; }
-        [MaxLength(200)]
-        public string Description { get; set; }
     }
 }

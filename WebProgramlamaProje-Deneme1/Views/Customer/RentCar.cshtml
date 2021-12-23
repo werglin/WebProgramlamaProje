@@ -54,7 +54,7 @@
 
                     <div class="border border-dark aracBaslik">Alış Tarihi</div>
                     <div class="border border-dark">
-                        <input id="alisTH" type="date" />
+                        <input id="alisTH" type="date" name="rentDate" />
                         <script>
                             document.getElementById('alisTH').valueAsDate = new Date();
                         </script>
@@ -62,15 +62,15 @@
 
                     <div class="border border-dark aracBaslik">Dönüş Tarihi</div>
                     <div class="border border-dark">
-                        <input id="donusTH" type="date" />
+                        <input id="donusTH" type="date" name="deliverDate" />
                         <script>
                             document.getElementById('donusTH').valueAsDate = new Date();
                         </script>
                     </div>
 
-                    
-                    <br>
 
+                    <br>
+                    <input type="hidden" id="BookingID" name="carId" value='@Model.Car.Id' />
                     <button type="submit" class="btn btn-warning w-100">Rezervasyonu Tamamla</button>
 
 

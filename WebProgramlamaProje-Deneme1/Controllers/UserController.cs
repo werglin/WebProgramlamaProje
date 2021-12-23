@@ -110,6 +110,10 @@ namespace WebProgramlamaProje_Deneme1.Controllers
             {
                 brand = "";
             }
+            if (rentDate > deliverDate)
+            {
+                deliverDate = rentDate;
+            }
             return View(new CarListModel { Cars = new FilterModel { Brand = brand, BranchId = branchId, DailyPrice = dailyPrice, FuelType = fuelType, RentDate = rentDate, TypeOfGear = typeOfGear , DeliverDate = deliverDate}.Filt(carService, dealService), Branches = branchService.GetAll().Data } );
         }
 
