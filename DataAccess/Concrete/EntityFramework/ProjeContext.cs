@@ -10,6 +10,7 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            // Veri tabanına dosya yolu ile bağlanma : "System.IO.Directory.GetCurrentDirectory()" WebProgramlamaProje-Deneme1 dosya yolunu gösteriyor. Arkasından gelenler dosya you atama
             optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\""+System.IO.Directory.GetCurrentDirectory()+ "\\_Database\\WebProgramlamaProje.mdf\";Integrated Security=True",
                 b => b.MigrationsAssembly("DataAccess"));
 
