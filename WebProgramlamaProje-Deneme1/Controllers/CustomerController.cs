@@ -101,5 +101,21 @@ namespace WebProgramlamaProje_Deneme1.Controllers
         {
             return View();
         }
+
+        public ActionResult KiralananAraclar()
+        {
+            if (HttpContext.Session.GetInt32("IsAdmin").HasValue == false)
+            {
+                return RedirectToAction("EnterAgain","User");
+            }
+
+            List<CustomerDealModel> models = new List<CustomerDealModel>();
+            foreach (var item in dealService.GetDealsOfUser(userService.GetByMail(HttpContext.Session.GetString("Mail")).Data.Id).Data)
+            {
+                models.Add(new CustomerDealModel {  Car = carService.GetById(item.CarId).Data, Deal = item});
+            }
+
+            return View(models);
+        }
     }
 }

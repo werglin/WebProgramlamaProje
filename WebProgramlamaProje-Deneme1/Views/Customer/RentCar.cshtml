@@ -9,77 +9,114 @@
 </head>
 
 <body>
-    <div class="container border-dark border-info BodyContainer">
-
-        <div class="row">
-            <div class="col-md-6 border border-dark aracKiralaMarka">@Model.Car.Brand</div>
-            <div class="col-md-6 border border-dark aracKiralaUst">
-                <div class="border border-dark h-100 w-50 float-start">
-                    <i class="fas fa-gas-pump"></i> @Model.Car.FuelType
-                </div>
-                <div class="border border-dark h-100 w-50 float-end">
-                    <i class="fas fa-arrows-alt"></i> @Model.Car.TypeOfGear
-                </div>
-
-            </div>
-        </div>
+    <div class="container BodyContainer">
 
         <div class="row">
 
-            <div class="col-md-4 border border-dark">
+            <div class="col-md-4 ">
                 <img src="/img/@Model.Car.PhotoName" class="w-100 h-100" />
             </div>
-            <div class="col-md-4 border border-dark aracBilgiler">
-                <div class="border border-dark aracBaslik">Alış Yeri</div>
-                <div class="border border-dark">@Model.Branch.Adress</div>
+            <div class="col-md-4 aracBilgiler">
+
+                <div class="row">
+                    <div class="col-md-12 surucuBilgi">
+                        <h2><b>ARAÇ BİLGİLERİ</b></h2>
+                    </div>
+                </div>
+                
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="aracBaslik">Marka :</div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>@Model.Car.Brand</div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="aracBaslik">Yakıt Tipi :</div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>@Model.Car.FuelType</div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="aracBaslik">Vites Tipi :</div>
+                    </div>
+                    <div class="col-md-6">
+                        <div> @Model.Car.TypeOfGear</div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="aracBaslik">Alış Yeri :</div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>@Model.Branch.Adress</div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="aracBaslik">Günlük Ücret :</div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>@Model.Car.DailyPrice</div>
+                    </div>
+                </div>
 
             </div>
-            <div class="col-md-4 border border-dark aracBilgiler">
-                <div class="border border-dark aracBaslik">Günlük Ücret</div>
-                <div class="border border-dark">@Model.Car.DailyPrice</div>
+            <div class="col-md-4 aracBilgiler">
+                <div class="row">
+                    <div class="col-md-12 formBilgiler">
+
+                        <form method="post" asp-controller="Customer" asp-action="RentIt" class="was-validated">
+
+                            <div class="col-md-12 surucuBilgi">
+                                <h2><b>TARİH BİLGİLERİ</b></h2>
+                            </div>
+
+                            <div class="CarBaslik">Alış Tarihi</div>
+                            <div class="CarTH">
+                                <input id="alisTH" type="date" name="rentDate" />
+                                <script>
+                                    document.getElementById('alisTH').valueAsDate = new Date();
+                                </script>
+                            </div>
+
+                            <div class="CarBaslik">Dönüş Tarihi</div>
+                            <div class="CarTH">
+                                <input id="donusTH" type="date" name="deliverDate" />
+                                <script>
+                                    document.getElementById('donusTH').valueAsDate = new Date();
+                                </script>
+                            </div>
+
+
+                            <br>
+                            <input type="hidden" id="BookingID" name="carId" value='@Model.Car.Id' />
+                            <button type="submit" class="btn btn-success w-100">Rezervasyonu Tamamla</button>
+
+
+
+                        </form>
+
+                    </div>
+
+                </div>
             </div>
 
         </div>
 
         <br><br><br><br>
 
-        <div class="row">
-            <div class="col-md-12 border border-dark formBilgiler">
-
-                <form method="post" asp-controller="Customer" asp-action="RentIt" class="was-validated">
-
-                    <div class="col-md-12 border border-dark surucuBilgi">
-                        <h2><b>TARİH BİLGİLERİ</b></h2>
-                    </div>
-
-                    <div class="border border-dark aracBaslik">Alış Tarihi</div>
-                    <div class="border border-dark">
-                        <input id="alisTH" type="date" name="rentDate" />
-                        <script>
-                            document.getElementById('alisTH').valueAsDate = new Date();
-                        </script>
-                    </div>
-
-                    <div class="border border-dark aracBaslik">Dönüş Tarihi</div>
-                    <div class="border border-dark">
-                        <input id="donusTH" type="date" name="deliverDate" />
-                        <script>
-                            document.getElementById('donusTH').valueAsDate = new Date();
-                        </script>
-                    </div>
-
-
-                    <br>
-                    <input type="hidden" id="BookingID" name="carId" value='@Model.Car.Id' />
-                    <button type="submit" class="btn btn-warning w-100">Rezervasyonu Tamamla</button>
-
-
-
-                </form>
-
-            </div>
-
-        </div>
+        
 
     </div>
 </body>

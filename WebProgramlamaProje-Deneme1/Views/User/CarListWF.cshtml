@@ -14,15 +14,15 @@
     <div class="loader-container">
         <div class="loader"></div>
     </div>
-    <div class="container border-dark border-info BodyContainer">
+    <div class="container BodyContainer">
 
         <div class="row">
 
-            <div class="col-md-3 border border-dark AracFiltrele">
+            <div class="col-md-3 AracFiltrele">
 
-                <div class="border border-dark">
-                    <div class="border border-dark filtreleBaslik"><h3><b>FİLTRELE</b></h3></div>
-                    <div class="border border-dark FiltreleKutu">
+                <div>
+                    <div class="filtreleBaslik"><h3><b>FİLTRELE</b></h3></div>
+                    <div class="FiltreleKutu">
 
                         <form method="post" asp-controller="User" asp-action="CarListWF">
 
@@ -61,23 +61,22 @@
                                 <option selected disabled>Alınacak Yer Seçiniz</option>
                                 @foreach (var item in Model.Branches)
                                 {
-                                    <option value="@item.Id">@item.Adress</option>
-                                }
+                    <option value="@item.Id">@item.Adress</option>}
                             </select>
 
                             <div class="form-group">
                                 <label for="date"><b>Alış Tarihi</b></label>
-                                <input type="date" id="alis" class="form-control" name="rentDate">
+                                <input type="date" id="USalis" class="form-control" name="rentDate">
                                 <script>
-                                    document.getElementById('alis').valueAsDate = new Date();
+                                    document.getElementById('USalis').valueAsDate = new Date();
                                 </script>
                             </div>
 
                             <div class="form-group">
                                 <label for="date"><b>Teslim Tarihi</b></label>
-                                <input type="date" id="teslim" class="form-control" name="deliverDate">
+                                <input type="date" id="USteslim" class="form-control" name="deliverDate">
                                 <script>
-                                    document.getElementById('teslim').valueAsDate = new Date();
+                                    document.getElementById('USteslim').valueAsDate = new Date();
                                 </script>
                             </div>
 
@@ -90,51 +89,50 @@
 
 
             </div>
-            <div class="col-md-9 border border-dark AracListele">
-                <div class="border border-dark araclarBaslik"><h3><b>ARAÇ FİLOSU</b></h3></div>
+            <div class="col-md-9 AracListele">
+                <div class="araclarBaslik"><h3><b>ARAÇ FİLOSU</b></h3></div>
 
                 <br><br>
                 @foreach (var item in Model.Cars)
                 {
-                    <div class="row">
+    <div class="row">
 
-                        <div class="col-md-3 border">
-                            <div class="border border-dark w-100 h-100"><img src="/img/@item.PhotoName" class="w-100 h-100" /></div>
-                        </div>
-                        <div class="col-md-6 border aracBilgi">
-                            <div class="border border-dark"><h4><b>@item.Brand</b></h4></div>
+        <div class="col-md-3">
+            <div class="w-100 h-100"><img src="/img/@item.PhotoName" class="w-100 h-100" /></div>
+        </div>
+        <div class="col-md-6 aracBilgi">
+            <div><h4><b>@item.Brand</b></h4></div>
 
-                            <div class="border border-dark">
-                                <div class="border border-dark float-start w-25"><b>Yakıt :</b></div>
-                                <div class="border border-dark float-start w-75">@item.FuelType<i class="fas fa-gas-pump"></i></div>
-                            </div>
+            <div>
+                <div class="float-start w-25"><b>Yakıt :</b></div>
+                <div class="float-start w-75">@item.FuelType<i class="fas fa-gas-pump"></i></div>
+            </div>
 
-                            <div class="border border-dark">
-                                <div class="border border-dark float-start w-25"><b>Vites :</b></div>
-                                <div class="border border-dark float-start w-75">@item.TypeOfGear<i class="fas fa-arrows-alt"></i></div>
-                            </div>
+            <div>
+                <div class="float-start w-25"><b>Vites :</b></div>
+                <div class="float-start w-75">@item.TypeOfGear<i class="fas fa-arrows-alt"></i></div>
+            </div>
 
-                            <div class="border border-dark">
-                                <div class="border border-dark float-start w-25"><b>G.Ücret :</b></div>
-                                <div class="border border-dark float-start w-75">@item.DailyPrice<i class="fas fa-money-check-alt"></i></div>
-                            </div>
+            <div>
+                <div class="float-start w-25"><b>G.Ücret :</b></div>
+                <div class="float-start w-75">@item.DailyPrice<i class="fas fa-money-check-alt"></i></div>
+            </div>
 
-                        </div>
-                        <div class="col-md-3 border kirala">
+        </div>
 
-                        </div>
+        <div class="col-md-3 kirala">
+            <button disabled class="btn w-100 h-100">Kiralayabilmek için üye olmalısınız</button>
+        </div>
 
-                    </div>
-                }
+    </div>
+
+                    <br /><br />}
 
 
 
             </div>
 
         </div>
-
-        
-
     </div>
 </body>
 </html>

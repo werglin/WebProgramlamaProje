@@ -17,7 +17,7 @@
         <div class="loader"></div>
     </div>
 
-    <div class="container border border-info BodyContainer">
+    <div class="container BodyContainer">
 
         <form method="post" asp-controller="Customer" asp-action="CarListWF">
             <div class="row">
@@ -33,7 +33,7 @@
 
                 <div class="col-lg-4 border StartDate">
                     <label style="color: white" for="alis"><i class="fas fa-car"></i>Alış</label>
-                    <input type="date" id="alis" / name="rentDate">
+                    <input type="date" id="alis" name="rentDate" />
                     <script>
                         document.getElementById('alis').valueAsDate = new Date();
                     </script>
@@ -151,18 +151,18 @@
         <div class="row">
             @foreach (var item in Model.News)
             {
-                <div class="col-md-3 border">
+                <div class="col-md-3">
                     <figure>
                         <img src="/img/@item.PhotoName" class="d-block w-100 h-100">
                     </figure>
                 </div>
-                <div class="col-md-9 border">
-                    <div class="row">
-                        <div class="col-md-12 border" style="font-size: 20px"><b>@item.Title</b></div>
+                <div class="col-md-9">
+                    <div class="row newsTitle">
+                        <div class="col-md-12"><b>@item.Title</b></div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-9 border" style="font-size: 18px"><p><b>@item.Summary</b></p></div>
-                        <div class="col-md-3 border">
+                    <div class="row newsSummary">
+                        <div class="col-md-9"><p><b>@item.Summary</b></p></div>
+                        <div class="col-md-3">
                             <a asp-controller="Customer" asp-action="Haber" asp-route-id="@item.Id" id="yonlendirButton" class="btn w-100 h-100">Devamını Oku...</a>
                         </div>
                     </div>

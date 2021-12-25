@@ -15,23 +15,22 @@
         <div class="loader"></div>
     </div>
 
-    <div class="container border border-info BodyContainer">
+    <div class="container BodyContainer">
 
-        <form method="post" asp-controller="User"  asp-action="CarListWF">
+        <form method="post" asp-controller="User" asp-action="CarListWF">
             <div class="row">
                 <div class="col-lg-4 border Delivery">
                     <select name="branchId">
                         <option selected disabled>Alış Noktası Seçiniz</option>
                         @foreach (var item in Model.Branches)
                         {
-                            <option value=@item.Id>@item.Adress</option>
-                        }
+            <option value=@item.Id>@item.Adress</option>}
                     </select>
                 </div>
 
                 <div class="col-lg-4 border StartDate">
                     <label style="color: white" for="alis"><i class="fas fa-car"></i>Alış</label>
-                    <input type="date" id="alis" / name="rentDate">
+                    <input type="date" id="alis" name="rentDate" />
                     <script>
                         document.getElementById('alis').valueAsDate = new Date();
                     </script>
@@ -40,7 +39,7 @@
 
                 <div class="col-lg-4 border EndDate">
                     <label style="color: white" for="teslim"><i class="fas fa-car"></i>Teslim</label>
-                    <input type="date" id="teslim"  name="deliverDate"  />
+                    <input type="date" id="teslim" name="deliverDate" />
                     <script>
                         document.getElementById('teslim').valueAsDate = new Date();
                     </script>
@@ -134,8 +133,8 @@
             <div><i class="fas fa-check-circle"></i>7/24 Destek ve Yol Yardımı</div>
         </div>
 
-        <br> <br/>
-        <br> <br/>
+        <br> <br />
+        <br> <br />
 
         <div class="tanitimClass">
             <h2><b>En Kolay, En Hızlı Ve En Ucuz Araç Kiralama</b></h2>
@@ -146,33 +145,32 @@
 
         <div class="haberlerBaslik"><i class="far fa-newspaper"></i><b>Haberler & Duyurular</b><i class="far fa-newspaper"></i></div>
         <br><br>
-        <div class="row">
-            @foreach (var item in Model.News)
-            {
-                <div class="col-md-3 border">
+
+         @foreach (var item in Model.News)
+         {
+            <div class="row">
+                <div class="col-md-3">
                     <figure>
                         <img src="/img/@item.PhotoName" class="d-block w-100 h-100">
                     </figure>
                 </div>
-                <div class="col-md-9 border">
-                    <div class="row">
-                        <div class="col-md-12 border" style="font-size: 20px"><b>@item.Title</b></div>
+                <div class="col-md-9">
+                    <div class="row newsTitle">
+                        <div class="col-md-12"><b>@item.Title</b></div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-9 border" style="font-size: 18px"><p><b>@item.Summary</b></p></div>
-                        <div class="col-md-3 border"> 
+                    <div class="row newsSummary">
+                        <div class="col-md-9"><p><b>@item.Summary</b></p></div>
+                        <div class="col-md-3">
                             <a asp-controller="User" asp-action="Haber" asp-route-id="@item.Id" id="yonlendirButton" class="btn w-100 h-100">Devamını Oku...</a>
                         </div>
                     </div>
 
                 </div>
-            }
 
-        </div>
-
+                
+            </div>           
+         }
     </div>
-
-
 
 </body>
 </html>

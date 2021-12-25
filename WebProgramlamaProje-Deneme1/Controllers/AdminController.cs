@@ -18,6 +18,7 @@ namespace WebProgramlamaProje_Deneme1.Controllers
         ICarService carService = new CarManager(new EfCarDal());
         IBranchService branchService = new BranchManager(new EfBranchDal());
         INewService newService = new NewsManager(new EfNewsDal());
+        IDealService dealService = new DealManager(new EfRentDealDal());
         public IActionResult AdminKayitliKullanicilar()
         {
             return View(userService.GetAll().Data);
@@ -74,6 +75,21 @@ namespace WebProgramlamaProje_Deneme1.Controllers
         {
             newService.Delete(newService.GetById(id).Data);
             return RedirectToAction("AdminHaber", "Admin");
+        }
+
+        public IActionResult AdminKiralananArabalar()
+        {
+            List<AdminDealModel> modelList = new List<AdminDealModel>();
+            foreach (var item in dealService.GetAll().Data)
+            {
+                modelList.Add(new AdminDealModel { Car = carService.GetById(item.CarId).Data, Deal = item, User = userService.GetById(item.UserId).Data });
+            }
+            return View(modelList);
+        }
+        public IActionResult DeleteDeal(int id)
+        {
+            dealService.Delete(dealService.GetById(id).Data);
+            return RedirectToAction("AdminKiralananArabalar", "Admin");
         }
     }
 }

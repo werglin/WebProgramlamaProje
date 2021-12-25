@@ -5,6 +5,7 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -42,7 +43,7 @@ namespace Business.Concrete
 
         public IDataResult<List<RentDeal>> GetAll()
         {
-            return new SuccessDataResult<List<RentDeal>>(_dealDal.GetAll(), Messages.ObjectSuccessfullyReturned);
+            return new SuccessDataResult<List<RentDeal>>(_dealDal.GetAll().OrderBy(x=> x.UserId).ToList(), Messages.ObjectSuccessfullyReturned);
         }
 
         public IDataResult<List<Car>> GetAvailableCars(DateTime rentTime, DateTime deliverDate)
@@ -62,6 +63,11 @@ namespace Business.Concrete
                 return new ErrorDataResult<List<RentDeal>>(null, Messages.ObjectNotFound);
             }
             return new SuccessDataResult<List<RentDeal>>(_dealDal.GetAll(x => x.Car.Id == entity.Id), Messages.ObjectSuccessfullyReturned);
+        }
+
+        public IDataResult<List<RentDeal>> GetDealsOfUser(int userId)
+        {
+            return new SuccessDataResult<List<RentDeal>>(_dealDal.GetAll(x => x.UserId == userId), Messages.ObjectSuccessfullyReturned);
         }
 
         public IResult Update(RentDeal entity)
