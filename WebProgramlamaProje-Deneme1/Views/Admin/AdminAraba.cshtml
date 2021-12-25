@@ -7,6 +7,10 @@
 </head>
 
 <body>
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+
     <div class="container BodyContainer w-100">
 
         <div class="aracEkleBaslik"><h3><b>ARAÇ EKLE-SİL</b></h3></div><br>
@@ -94,7 +98,8 @@
                             <option value="">ARACIN BULUNDUĞU YERİ SEÇİNİZ</option>
                             @foreach (var item in Model.Branches)
                             {
-                <option value="@item.Id">@item.Adress</option>}
+                <option value="@item.Id">@item.Adress</option>
+}
                         </select>
                     </div>
                     <div class="float-start w-100">
