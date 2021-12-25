@@ -35,20 +35,9 @@ namespace Business.Concrete
             _dealDal.Delete(entity);
             return new SuccessResult(Messages.SuccessfullyDeleted);
         }
-
-        public IDataResult<List<Car>> FilterListByDateTime( List<Car> cars,  DateTime dateTime, DateTime deliverDate)
-        {
-            return new SuccessDataResult<List<Car>>(_dealDal.GetUnorderedCarsFRList(cars, dateTime, deliverDate));
-        }
-
         public IDataResult<List<RentDeal>> GetAll()
         {
             return new SuccessDataResult<List<RentDeal>>(_dealDal.GetAll().OrderBy(x=> x.UserId).ToList(), Messages.ObjectSuccessfullyReturned);
-        }
-
-        public IDataResult<List<Car>> GetAvailableCars(DateTime rentTime, DateTime deliverDate)
-        {
-            return new SuccessDataResult<List<Car>>(_dealDal.GetUnorderedCars(rentTime, deliverDate ));
         }
 
         public IDataResult<RentDeal> GetById(int id)

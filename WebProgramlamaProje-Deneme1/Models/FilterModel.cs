@@ -17,23 +17,55 @@ namespace WebProgramlamaProje_Deneme1.Models
 
         public List<Car> Filt(ICarService carService,IDealService dealService)
         {
+           
 
             if (BranchId == -1)
             {
-                return dealService.FilterListByDateTime( carService.GetAllWithLinq(x => x.Brand.Contains(Brand) &&
+                return FiltWOBranch(carService, dealService);
+            }
+
+            List<Car> carList= carService.GetAllWithLinq(x => x.Brand.Contains(Brand) &&
+                                           x.DailyPrice >= DailyPrice &&
+                                           x.FuelType.Contains(FuelType) &&
+                                           x.TypeOfGear.Contains(TypeOfGear) &&
+                                           x.BranchId == BranchId
+            ).Data;
+            for (int i = 0; i < carList.Count; i++)
+            {
+                foreach (var item in dealService.GetDealsOfCar(carList[i]).Data)
+                {
+                    if (!(item.DeliveryDate < RentDate || (item.RentDate > RentDate && item.RentDate > DeliverDate)))
+                    {
+                        carList.RemoveAt(i);
+                        i--;
+                        break;
+                    }
+                }
+            }
+            return carList;
+        }
+        public List<Car> FiltWOBranch(ICarService carService, IDealService dealService)
+        {
+            List<Car> carList = carService.GetAllWithLinq(x => x.Brand.Contains(Brand) &&
                                            x.DailyPrice >= DailyPrice &&
                                            x.FuelType.Contains(FuelType) &&
                                            x.TypeOfGear.Contains(TypeOfGear)
-                ).Data  , RentDate, DeliverDate).Data;
+            ).Data;
+
+            for (int i = 0; i<carList.Count;i++)
+            {
+                foreach (var item in dealService.GetDealsOfCar(carList[i]).Data)
+                {
+                    if (!(item.DeliveryDate < RentDate || (item.RentDate > RentDate && item.RentDate > DeliverDate)))
+                    {
+                        carList.RemoveAt(i);
+                        i--;
+                        break;
+                    }
+                }
             }
 
-
-            return dealService.FilterListByDateTime(carService.GetAllWithLinq(x => x.Brand.Contains(Brand) &&
-                                          x.DailyPrice >= DailyPrice &&
-                                          x.FuelType.Contains(FuelType) &&
-                                          x.TypeOfGear.Contains(TypeOfGear) &&
-                                          x.BranchId== BranchId
-                ).Data, RentDate, DeliverDate).Data;
+            return carList;
         }
     }
 }
