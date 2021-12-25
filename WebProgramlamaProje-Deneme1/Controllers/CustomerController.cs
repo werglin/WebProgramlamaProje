@@ -93,8 +93,11 @@ namespace WebProgramlamaProje_Deneme1.Controllers
             {
                 return RedirectToAction("EnterAgain", "User");
             }
-            dealService.Add(new RentDeal { Car = carService.GetById(carId).Data, RentDate = rentDate, DeliveryDate = deliverDate, User = userService.GetByMail(HttpContext.Session.GetString("Mail")).Data});
-            return RedirectToAction("ResComp", "Customer");
+            if (dealService.Add(new RentDeal { Car = carService.GetById(carId).Data, RentDate = rentDate, DeliveryDate = deliverDate, User = userService.GetByMail(HttpContext.Session.GetString("Mail")).Data }).Success)
+            {
+                return RedirectToAction("ResComp", "Customer");
+            }
+            return RedirectToAction("Index", "Customer");
         }
 
         public ActionResult ResComp()
